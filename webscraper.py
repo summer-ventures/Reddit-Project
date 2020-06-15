@@ -1,10 +1,10 @@
-from selenium import webdriver
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-import pandas as pd
-import time
+#!/usr/bin/ python3
 
-driver = webdriver.Chrome('./chromedriver')
+import os
+import requests
+import re
+
+headers = {'user-agent': 'reddit-{}'.format(os.environ.get('USER'))}
 
 def number_active_users(subreddit):
 	'''
@@ -12,27 +12,17 @@ def number_active_users(subreddit):
 	Args: Subreddit
 	'''
 
-	website = "https://www.reddit.com/r/" + subreddit
+	website = "https://www.reddit.com/r/"
 
-	# try:
-	# 	page = urlopen(website)
-	# except:
-	# 	print("error opening url")
+	response = requests.get(website + subreddit, headers=headers)
 
-	# soup = BeautifulSoup(page, 'html.parser')
+	currently_viewing = re.search(r'(?<=\"currentlyViewingCount\":)\d+', response.text)
+	currently_viewing = int(currently_viewing.group(0))
 
-	# num_users = soup.find('div', {"class": "currentlyViewingCount"})
+	print(subreddit)
+	print(currently_viewing)
+		
+	return currently_viewing
 
-	driver.get(website)
-
-	num_users_element = driver.find_elements_by_xpath('//*[@id="SHORTCUT_FOCUSABLE_DIV"]/div[2]/div/div/div/div[2]/div[3]/div[2]/div/div[1]/div[2]/div[2]/div[2]/div')[0]
-
-	num_users = num_users_element.text
-
-	print(num_users)
-
-	return num_users
-
-number_active_users("movies")
-
-time.sleep(5)
+if __name__ == "__main__":
+	number_active_users("movies")
