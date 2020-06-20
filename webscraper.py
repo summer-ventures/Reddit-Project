@@ -3,6 +3,7 @@
 import os
 import requests
 import re
+import subreddit_database
 
 headers = {'user-agent': 'reddit-{}'.format(os.environ.get('USER'))}
 subreddit_name = 'movies'
@@ -37,5 +38,4 @@ class Subreddit:
 if __name__ == '__main__':
 	sub = Subreddit(subreddit_name, 20, 60)
 	sub.number_active_users()
-	import subreddit_database
 	subreddit_database.insert_to_database(subreddit_name, sub.number_active_users())
