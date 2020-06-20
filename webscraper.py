@@ -9,7 +9,7 @@ subreddit_name = 'movies'
 
 class Subreddit:
 	'''
-	Subreddit class	that finds the number of active users in a given subreddit over a given timeperiod
+	Subreddit class	that finds the number of active users in a given subreddit over a given time period
 	'''
 	def __init__(self, subreddit, runtime, interval):
 		self.subreddit = subreddit
@@ -33,7 +33,9 @@ class Subreddit:
 		print(currently_viewing)
 		
 		return currently_viewing
-
+	
 if __name__ == '__main__':
 	sub = Subreddit(subreddit_name, 20, 60)
 	sub.number_active_users()
+	import subreddit_database
+	subreddit_database.insert_to_database(subreddit_name, sub.number_active_users())
