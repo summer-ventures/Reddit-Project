@@ -3,7 +3,10 @@
 import os
 import requests
 import re
+import time
+import datetime
 import subreddit_database
+
 
 headers = {'user-agent': 'reddit-{}'.format(os.environ.get('USER'))}
 subreddit_name = 'movies'
@@ -34,8 +37,26 @@ class Subreddit:
 		print(currently_viewing)
 		
 		return currently_viewing
+
+	def run_scraper_over_time(self):
+		'''
+		Collects data of number of users online in a given subreddit over a given time period 
+		at a given interval
+		'''
+		time_passed = time.clock()
+
+		while time_passed < self.runtime:
+			#time_read = str(datetime.datetime.now().time().strftime("%H-%M-%S"))
+			time_passed = time.clock()
+			num_users = self.number_active_users()
+
+			subreddit_database.insert_to_database(subreddit_name, num_users)
+			print(time_passed)
+			time.sleep(self.interval)
+		
 	
 if __name__ == '__main__':
-	sub = Subreddit(subreddit_name, 20, 60)
-	sub.number_active_users()
-	subreddit_database.insert_to_database(subreddit_name, sub.number_active_users())
+	sub = Subreddit(subreddit_name, 60, 20)
+	#sub.number_active_users()
+	#subreddit_database.insert_to_database(subreddit_name, sub.number_active_users())
+	sub.run_scraper_over_time()
