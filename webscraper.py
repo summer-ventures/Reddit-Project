@@ -7,9 +7,10 @@ import time
 import datetime
 import subreddit_database
 
-
 headers = {'user-agent': 'reddit-{}'.format(os.environ.get('USER'))}
 subreddit_name = 'movies'
+length_of_run = 60
+frequency = 20
 
 class Subreddit:
 	'''
@@ -46,7 +47,6 @@ class Subreddit:
 		time_passed = time.clock()
 
 		while time_passed < self.runtime:
-			#time_read = str(datetime.datetime.now().time().strftime("%H-%M-%S"))
 			time_passed = time.clock()
 			num_users = self.number_active_users()
 
@@ -56,7 +56,5 @@ class Subreddit:
 		
 	
 if __name__ == '__main__':
-	sub = Subreddit(subreddit_name, 60, 20)
-	#sub.number_active_users()
-	#subreddit_database.insert_to_database(subreddit_name, sub.number_active_users())
+	sub = Subreddit(subreddit_name, length_of_run, frequency)
 	sub.run_scraper_over_time()

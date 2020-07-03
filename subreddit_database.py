@@ -1,17 +1,14 @@
 import pymongo
 '''
-Download MongoDB 4.2.8. Create a new database on localhost called RedditProject.
-Create a collection called subreddits
+Create a new database on called RedditProject.
+Create a collection called subreddits_user_count
 '''
 # Creates a connection with MongoClient
-client = pymongo.MongoClient('localhost', 27017)
+cluster = pymongo.MongoClient("mongodb+srv://Alex:12345@redditproject.ft4yu.mongodb.net/test")
 # Create a database called RedditProject
-database = client["RedditProject"]
+database = cluster["RedditProject"]
 # Create a collection called subreddits
-collection = database["subreddits"]
-# Test: return a list of your system's databases and collections
-# print(client.list_database_names())
-# print(database.list_collection_names())
+collection = database["subreddits_user_count"]
 
 def insert_to_database(subreddit_name, num_users):
     '''
