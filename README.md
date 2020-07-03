@@ -3,9 +3,9 @@ The goal of this project is to build a web application that processes the online
 
 ## Installation
 In command prompt run
-'''bash
+```bash
  pip install pymongo dnspython 
-'''
+```
 to add modules to your environment
 
 ## MongoDB setup
@@ -17,7 +17,7 @@ In the database create a collection called subreddits_user_count
 ## Usage
 Change subreddit_name to the subreddit you want to track. Change length_of_run to how long you want to run the tracker. Change frequency to how frequent you want the webscraper to check the number of online users in subreddit_name.
 Run in the reddit-project directory:
-'''bash
+```bash
 python webscraper.py
-'''
+```
 and you should start seeing datapoints populating the subreddits_user_count collection in the RedditProject database.
