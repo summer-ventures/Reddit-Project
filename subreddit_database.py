@@ -10,11 +10,11 @@ database = cluster["RedditProject"]
 # Create a collection called subreddits
 collection = database["subreddits_user_count"]
 
-def insert_to_database(subreddit_name, num_users):
+def insert_to_database(subreddit_name, time_read, num_users):
     '''
     Creates dict object and inserts to subreddit collection
     '''
-    data = {subreddit_name: num_users}
+    data = {"subreddit_name": subreddit_name, "time": time_read, "number of users": num_users}
     collection.insert_one(data)
 
 if __name__ == '__main__':

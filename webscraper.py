@@ -9,8 +9,8 @@ import subreddit_database
 
 headers = {'user-agent': 'reddit-{}'.format(os.environ.get('USER'))}
 subreddit_name = 'movies'
-length_of_run = 60
-frequency = 20
+length_of_run = 3600
+frequency = 60
 
 class Subreddit:
 	'''
@@ -47,10 +47,11 @@ class Subreddit:
 		time_passed = time.clock()
 
 		while time_passed < self.runtime:
+			time_read = str(datetime.datetime.now().time().strftime("%H-%M-%S"))
 			time_passed = time.clock()
 			num_users = self.number_active_users()
-
-			subreddit_database.insert_to_database(subreddit_name, num_users)
+			
+			subreddit_database.insert_to_database(subreddit_name, time_read, num_users)
 			print(time_passed)
 			time.sleep(self.interval)
 		
