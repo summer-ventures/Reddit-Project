@@ -21,8 +21,12 @@ Run in the reddit-project directory:
 python webscraper.py
 ```
 and you should start seeing datapoints populating the subreddits_user_count collection in the RedditProject database.
-MongoDB Compass has a built-in schema function that displays a histogram of the percent change in users of the runtime period.
+MongoDB Compass has a built-in schema function that displays a histogram of what percentage of what percent
 
 Ex: Results after running webscraper.py on the movies subreddit for an hour sampling every minute
 
-![](images/Capture1.png)
+![](images/Capture1.PNG)
+Notice how there are not 60 different "bars" in the histogram. This is because MongoDB schema groups the
+![](images/Capture2.PNG)
+![](images/Capture3.PNG)
+
