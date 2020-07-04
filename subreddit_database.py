@@ -14,7 +14,7 @@ def insert_to_database(subreddit_name, time_read, num_users):
     '''
     Creates dict object and inserts to subreddit collection
     '''
-    data = {subreddit_name: num_users, num_users:time_read}
+    data = {subreddit_name: num_users, "time": time_read}
     collection.insert_one(data)
 
 if __name__ == '__main__':
