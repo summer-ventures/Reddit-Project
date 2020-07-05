@@ -1,10 +1,11 @@
 import pymongo
+from webscraper import subreddit_name
 '''
 Create a new database on called RedditProject.
 Create a collection called subreddits_user_count
 '''
 database_name = "RedditProject"
-collection_name = "subreddits_user_count"
+collection_name = subreddit_name
 # Creates a connection with MongoClient
 cluster = pymongo.MongoClient("mongodb+srv://Alex:12345@redditproject.ft4yu.mongodb.net/test")
 # Create a database called RedditProject

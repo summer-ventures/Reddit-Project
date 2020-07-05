@@ -8,7 +8,7 @@ import datetime
 import subreddit_database
 
 headers = {'user-agent': 'reddit-{}'.format(os.environ.get('USER'))}
-subreddit_name = 'movies'
+subreddit_name = 'science'
 length_of_run = 3600
 frequency = 60
 
