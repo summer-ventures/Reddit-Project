@@ -4,12 +4,12 @@ The goal of this project is to build a web application that processes the online
 ## Installation
 In command prompt run
 ```bash
- pip install pymongo dnspython 
+ pip install pymongo dnspython requests
 ```
 to add modules to your environment
 
 ## MongoDB setup
-Download MongoDB Compass ver=1.12
+Download MongoDB Compass ver=1.21
 Create cluster on MongoDB Atlas
 In the cluster create a new database on called RedditProject.
 In the database create a collection called subreddits_user_count
