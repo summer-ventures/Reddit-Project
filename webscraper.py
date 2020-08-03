@@ -5,12 +5,33 @@ import requests
 import re
 import time
 import datetime
-import subreddit_database
+import pymongo
 
 headers = {'user-agent': 'reddit-{}'.format(os.environ.get('USER'))}
 subreddit_name = 'science'
-length_of_run = 3600
+length_of_run = 43200
 frequency = 60
+
+'''
+Database Configuration:
+Create a new database on called RedditProject.
+Create a collection called subreddits_user_count
+'''
+database_name = "RedditProject"
+collection_name = subreddit_name
+# Creates a connection with MongoClient
+cluster = pymongo.MongoClient("mongodb+srv://Alex:12345@redditproject.ft4yu.mongodb.net/test")
+# Create a database called RedditProject
+database = cluster[database_name]
+# Create a collection called subreddits
+collection = database[collection_name]
+
+def insert_to_database(subreddit_name, time_read, num_users):
+    '''
+    Creates dict object and inserts to subreddit collection
+    '''
+    data = {"subreddit name": subreddit_name,  "time": time_read, "number of users": num_users}
+    collection.insert_one(data)
 
 class Subreddit:
 	'''
@@ -54,7 +75,6 @@ class Subreddit:
 			subreddit_database.insert_to_database(subreddit_name, time_read, num_users)
 			print(time_passed)
 			time.sleep(self.interval)
-		
 	
 if __name__ == '__main__':
 	sub = Subreddit(subreddit_name, length_of_run, frequency)
