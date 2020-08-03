@@ -33,6 +33,9 @@ def insert_to_database(subreddit_name, time_read, num_users):
     data = {"subreddit name": subreddit_name,  "time": time_read, "number of users": num_users}
     collection.insert_one(data)
 
+'''
+Webscraping
+'''
 class Subreddit:
 	'''
 	Subreddit class	that finds the number of active users in a given subreddit over a given time period
@@ -72,7 +75,7 @@ class Subreddit:
 			time_passed = time.clock()
 			num_users = self.number_active_users()
 			
-			subreddit_database.insert_to_database(subreddit_name, time_read, num_users)
+			insert_to_database(subreddit_name, time_read, num_users)
 			print(time_passed)
 			time.sleep(self.interval)
 	
